@@ -1,0 +1,81 @@
+<form [formGroup]="formGroup">
+  {{formGroup.valid | json}} <br>
+  {{formGroup.value | json}} <br>
+  {{formGroup.errors | json}} <br>
+  <section class="example-container mat-elevation-z8" tabindex="0">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name" sticky>
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element; let index = index">
+          <ng-container *ngIf="rowEditingIndex === index">
+            <mat-form-field>
+              <input matInput formControlName="name">
+            </mat-form-field>
+          </ng-container>
+          <ng-container *ngIf="rowEditingIndex !== index">
+            {{element.name}}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No.</th>
+        <td mat-cell *matCellDef="let element; let index = index">
+          {{element.position}}
+        </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef> Weight</th>
+        <td mat-cell *matCellDef="let element; let index = index">
+          <ng-container *ngIf="rowEditingIndex === index">
+            <mat-form-field>
+              <input matInput formControlName="weight">
+            </mat-form-field>
+          </ng-container>
+          <ng-container *ngIf="rowEditingIndex !== index">
+            {{element.weight}}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> Symbol</th>
+        <td mat-cell *matCellDef="let element; let index = index">
+          {{element.symbol}}
+        </td>
+      </ng-container>
+
+      <!-- Star Column -->
+      <ng-container matColumnDef="actions" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+        <td mat-cell *matCellDef="let element; let index = index">
+          <div class="button-group" *ngIf="index !== rowEditingIndex">
+            <button mat-icon-button (click)="toggle(element, index)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+          <div class="button-group" *ngIf="index === rowEditingIndex">
+            <button mat-icon-button (click)="clear()">
+              <mat-icon>close</mat-icon>
+            </button>
+            <button mat-icon-button (click)="triggerUpdate()">
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnIds"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnIds;"></tr>
+    </table>
+  </section>
+</form>
