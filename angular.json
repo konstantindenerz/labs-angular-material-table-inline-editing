@@ -37,6 +37,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/demo/src/styles.scss"
             ],
             "scripts": []
@@ -100,6 +101,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/demo/src/styles.scss"
             ],
             "scripts": []
